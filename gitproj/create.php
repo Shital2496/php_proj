@@ -1,35 +1,64 @@
 <?php
- include "config.php";
- if(isset($_POST['submit']))
- {
+include_once"config.php";
 
-    $Name =$_POST['name'];
-    $City =$_POST['city'];
- }
+if (isset($_POST['submit'])) 
+  {
+    $user_id = $_POST['id'];
 
- $q="insert into 'php' ('name','city') values('$Name','$City'))";
- $result = $conn->query($q);
- if($result == true)
- {
-    echo "inserted value";
- }else {
-    echo "Error: " . $q . "<br>" . $conn->error;
+    $name = $_POST['name'];
+
+    $dob = $_POST['dob'];
+
+    $designation = $_POST['designation'];
+
+    $sql = "INSERT INTO `users`('id',`name`, `dob`, `designation`) VALUES ('$user_id','$name','$dob','$designation')";
+
+	//$result=mysqli_query($conn, $sql);
+   // $result = $conn->query($sql);
+
+    if ($result == True) {
+		
+
+    echo "New record created successfully.";
+	
+    }else{
+
+      echo "Error:". $sql . "<br>". $conn->error;
+
+    } 
+
+    $conn->close(); 
+
   }
-  
-  $conn->close();
 
+else{
+
+  echo "Error:". $sql . "<br>". $conn->error;
+
+} 
 ?>
-<html >
-    <body>
-        <h2>Form</h2>
-<form action ="" method="POST">
-    <fieldset>
-        <legend> personal info</legend>
-  <label >First name:</label><br>
-  <input type="text" id="name" name="name"><br>
-  <label for="lname">City:</label><br>
-  <input type="text" id="city" name="city">
-    </fieldset>
-</form>
+<html>
+<head>
+	<title>crud php</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<form method="post" action="" >
+		<div class="input-group">
+			<label>Name</label>
+			<input type="text" name="name" value="">
+		</div>
+		<div class="input-group">
+			<label>Dob</label>
+			<input type="date" name="dob" value="">
+		</div>
+        <div class="input-group">
+			<label>Designation</label>
+			<input type="text" name="designation" value="">
+		</div>
+		<div class="input-group">
+			<button class="btn" type="submit" name="submit" >Submit</button>
+		</div>
+	</form>
 </body>
 </html>

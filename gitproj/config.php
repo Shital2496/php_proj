@@ -1,6 +1,5 @@
-<?php
-ini_set("display errors","1");
-error_reporting(E_ALL);
+<!-- <?php
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -8,17 +7,30 @@ $dbname="phpcrud";
 
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-  echo "hi";die;
+ 
   die("Connection failed: " );
 }
 else {
   echo "Connected successfully";
   
 }
+?> -->
 
 
+
+
+
+<?php
+$con=mysqli_connect("localhost", "root", "", "phpcrud");
+if(mysqli_connect_errno())
+{
+echo "Connection Fail".mysqli_connect_error();
+}
+else{
+  echo "connection successful";
+}
 ?>
